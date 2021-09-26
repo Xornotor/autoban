@@ -2,19 +2,31 @@
 # Made by Xornotor
 # Let's defeat this bots!
 
-import time
-from pynput.keyboard import Key, Controller
-from pynput import keyboard
+from os import getcwd
+from time import sleep
 
-keyboard = Controller()
+from autoban.logger import logging
+from autoban.tools import read_file, type_these
 
-time.sleep(5)
 
-file = open("banlist.txt", "r")
-linhas = file.readlines()
+logger = logging.getLogger(__name__)
 
-for linha in linhas:
-    keyboard.type(linha)
-    keyboard.press(Key.enter)
-    keyboard.release(Key.enter)
-    time.sleep(0.3)
+FILENAME = "banlist.txt"
+
+
+def main():
+
+    logger.warning("Starting bot, please put your cursor on the Twitch chat")
+    sleep(5)
+
+    logger.warning("Reading `%s`" % FILENAME)
+    lines = read_file(getcwd() + "/" + FILENAME)
+
+    logger.warning("Applying `%s` to chat, please wait..." % FILENAME)
+    type_these(lines)
+
+    logger.warning("Done.")
+
+
+if __name__ == "__main__":
+    main()
