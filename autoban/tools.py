@@ -10,7 +10,7 @@ def read_file(name: str) -> list[str]:
         stream = file.readlines()
         lines = clear_lines(stream)
 
-        return lines
+    return lines
 
 
 def clear_lines(lines: list[str]) -> list[str]:
