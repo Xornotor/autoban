@@ -26,7 +26,3 @@ def main():
     type_these(lines)
 
     logger.warning("Done.")
-
-
-if __name__ == "__main__":
-    main()
